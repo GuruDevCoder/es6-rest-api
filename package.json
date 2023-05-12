@@ -1,0 +1,76 @@
+{
+  "name": "GymBuddyAPI",
+  "private": true,
+  "description": "",
+  "author": "",
+  "license": "UNLICENSE",
+  "main": "./app/server.js",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "node": ">=0.10.8"
+  },
+  "dependencies": {
+    "app-module-path": "^1.0.4",
+    "body-parser": "^1.14.1",
+    "cheerio": "latest",
+    "config": "*",
+    "consolidate": "^0.14.0",
+    "dotenv": "^2.0.0",
+    "express": "^4.11.0",
+    "glob": "^7.0.0",
+    "hbs": "^4.0",
+    "metalogger": "*",
+    "mongodb": "^2.0.43",
+    "request": "latest",
+    "request-promise": "^4.1.1",
+    "underscore": "^1.8.3",
+    "cors": "^2.7.1",
+    "resource-router-middleware": "^0.5.1"
+  },
+  "devDependencies": {
+    "after": "^0.8.1",
+    "istanbul": "^0.4.2",
+    "mocha": "^3.0.0",
+    "chai": "^3.5.0",
+    "should": "^10.0.0",
+    "jshint": "^2.5.x",
+    "nock": "^8.0.0",
+    "sinon": "^1.17.3",
+    "supertest": "^2.0.0",
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "eslint": "^3.1.1",
+    "nodemon": "^1.9.2"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 7,
+      "sourceType": "module"
+    },
+    "env": {
+      "node": true
+    },
+    "rules": {
+      "no-console": 0,
+      "no-unused-vars": 1
+    }
+  },
+  "scripts": {
+    "dev": "nodemon -w src --exec \"npm run start\"",
+    "start": "node api/server.js",
+    "prestart": "npm run -s build",
+    "build": "babel src -s -D -d api --presets es2015,stage-0",
+    "predev": "babel src -s -D -d api --presets es2015,stage-0",
+    "test": "mocha --recursive",
+    "pretest": "babel src -s -D -d api --presets es2015,stage-0",
+    "eslint": "eslint src",
+    "test-cov": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- --reporter dot test/ test/*/",
+    "test-travis": "istanbul cover _mocha --report lcovonly -- test/ test/*/"
+  }
+}
